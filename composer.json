@@ -1,0 +1,11 @@
+{
+    "name": "siddharth/package-for-php-8-only",
+    "autoload": {
+        "psr-4": {
+            "Siddharth\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}
