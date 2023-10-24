@@ -13,16 +13,5 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-      - name: Install DDev
-        run: |
-          curl -fsSL https://pkg.ddev.com/apt/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null
-          echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://pkg.ddev.com/apt/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
-          sudo apt update && sudo apt install -y ddev
-
-      - name: Log ddev version
-        run: ddev -v
+      - uses: actions/checkout@v1
+      - uses: ddev/github-action-setup-ddev@v1
