@@ -30,3 +30,11 @@ jobs:
       - name: Log ddev version
         run: ddev -v
 
+      - name: Install WordPress
+        run: |
+          mkdir yolo && cd yolo
+          ddev config --project-type=wordpress
+          ddev start
+          ddev wp core download
+          ddev launch
+
