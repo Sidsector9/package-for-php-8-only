@@ -14,7 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install mkcert
-        run: sudo apt install libnss3-tools
+        run: |
+          sudo apt install libnss3-tools
+          mkcert -install
+
       - name: Install Docker
         run: |
           sudo apt install apt-transport-https ca-certificates curl software-properties-common
