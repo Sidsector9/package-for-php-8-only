@@ -13,14 +13,16 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Easy Engine
-        run: wget -qO ee https://rt.cx/ee4 && sudo bash ee
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-      - name: Change DB permissions
-        run: chmod -R 775 database
+      - name: Install DDev
+        run: |
+          curl -fsSL https://pkg.ddev.com/apt/gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ddev.gpg > /dev/null
+          echo "deb [signed-by=/etc/apt/trusted.gpg.d/ddev.gpg] https://pkg.ddev.com/apt/ * *" | sudo tee /etc/apt/sources.list.d/ddev.list
+          sudo apt update && sudo apt install -y ddev
 
-      - name: Create a website
-        run: ee site create yolo.com --type=wp --ssl=le
-
-      - name: Ping the website
-        run: curl https://yolo.com
+      - name: Log ddev version
+        run: ddev -v
