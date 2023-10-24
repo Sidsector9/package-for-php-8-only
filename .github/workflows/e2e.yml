@@ -1,0 +1,23 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - develop
+      - trunk
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Easy Engine
+        run: wget -qO ee https://rt.cx/ee4 && sudo bash ee
+
+      - name: Create a website
+        run: ee site create yolo.com --type=wp --ssl=le
+
+      - name: Ping the website
+        run: curl https://yolo.com
