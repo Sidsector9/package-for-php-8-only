@@ -21,4 +21,3 @@ jobs:
 
       - name: Ping the website
         run: curl https://yolo.com
-`
