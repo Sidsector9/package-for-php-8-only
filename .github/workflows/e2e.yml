@@ -16,6 +16,9 @@ jobs:
       - name: Install Easy Engine
         run: wget -qO ee https://rt.cx/ee4 && sudo bash ee
 
+      - name: Change DB permissions
+        run: chmod -R 775 database
+
       - name: Create a website
         run: ee site create yolo.com --type=wp --ssl=le
 
